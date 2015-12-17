@@ -31,35 +31,66 @@ def getUserToQuery():
     #Eventually this may be made mutable
     return "charliesheen"
 
-def stripTweet(tweet):
-    #Charlie has a lot of extra crap in his tweets
-    #(copyrights, 'x', twitter links, etc)
-    #This function will strip most of that away
-    #NOTE: One trend I've found is that he includes all of his links
-    #   and hashtags after the copyright symbol. Perhaps making
-    #   a substring of everything up to the symbol will cut out a
-    #   good deal. Then check after for his 'signature'.
-    #tweet = tweet.decode("utf8")
-    cIndex = tweet.find('\xa9')
-    print "cIndex: " + str(cIndex)
-    if(cIndex > -1):
-        tweet = tweet[:cIndex]
-    print "Double newline found at index: " + str(tweet.find('\n\n'))
-    print tweet
-
 def status(statusList, degree = 1):
+    #Function definitions
+    def strCut(index):
+        global tweet
+        tweet = tweet[:index]
+    def strDel(toDel, delFrom):
+        if(toDel > -1):
+            print "Char found at: " + str(toDel)
+            #delFrom = delFrom[:toDel]
+            return True
+        else:
+            return False
+
+    #find random tweet
     length = len(statusList)
-    rand = 6 #randint(0,(length-1))
+    rand = randint(0,(length-1))
+    global tweet
     tweet = statusList[rand].text
     print "Length: " + str(length)
     print "Random Number: " + str(rand)
-    #print "Text output: \n" + tweet
     print "\nStripped Tweet: "
-    stripTweet(tweet)
+    #clean random tweet
+        #Charlie has a lot of extra crap in his tweets
+        #(copyrights, 'x', twitter links, etc)
+        #This function will strip most of that away
+        #NOTE: One trend I've found is that he includes all of his links
+        #   and hashtags after the copyright symbol. Perhaps making
+        #   a substring of everything up to the symbol will cut out a
+        #   good deal. Then check after for his 'signature'.
+    #Char cleaning
+    xIndex = tweet.find('\nx')
+    xoxIndex = tweet.find('xox')
+    cIndex = tweet.find('\xa9')
+    #'x' cleaning
+    if(strDel(xIndex, tweet)):
+        strCut(xIndex)
+    #'xox' cleaning
+    elif(strDel(xoxIndex,tweet)):
+        strCut(xoxIndex)
+    # copyright cleaning
+    elif(strDel(cIndex, tweet)):
+        strCut(cIndex)
+    #end of string newline cleaning
+    newlineFlag = False
+    while(not newlineFlag):
+        if(tweet.endswith("\n")):
+            tweet = tweet[:-1]
+        else:
+            newlineFlag = True
+    print "Double newline found at index: " + str(tweet.find('\n\n'))
+    print tweet
+    #determine tweet substring
+    def scopetest():
+        print "Degree is: " + str(degree)
+    scopetest()
 
 api = setupAPI()
 user = getUserToQuery()
-timeline = api.GetUserTimeline(screen_name=user,count=10,include_rts=False)
+timeline = api.GetUserTimeline(screen_name=user,count=20,include_rts=False)
 print [t.GetText() for t in timeline]
 #print timeline[0].text
 status(timeline)
+print "EOT"
