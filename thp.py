@@ -5,6 +5,9 @@
 
 #import section
 import twitter
+import pyttsx
+engine = pyttsx.init()
+engine.setProperty('rate', 150)
 from random import randint
 import sys
 reload(sys)
@@ -131,11 +134,13 @@ def status(statusList, degree = 1):
     scopetest()
     subTweet()
     print tweet
+    engine.say(tweet)
+    engine.runAndWait()
 
 api = setupAPI()
 user = getUserToQuery()
 timeline = api.GetUserTimeline(screen_name=user,count=20,include_rts=False)
 print [t.GetText() for t in timeline]
 #print timeline[0].text
-status(timeline, 3)
+status(timeline, 2)
 print "EOT"
