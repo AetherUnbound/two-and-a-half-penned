@@ -59,8 +59,9 @@ def status(statusList, degree = 1):
     #   degree = 3: random line from random paragraph is returned
     def subTweet():
         #internal function for randomly selecting paragraph/line
-        def randSelect(newline, numNewline):
+        def randSelect(newline):
             #finds the indexes of each newline
+            numNewline = len(newline)
             global tweet
             start = 0
             breakList = [0] #append starting location
@@ -86,15 +87,15 @@ def status(statusList, degree = 1):
         if(degree == 1): #full tweet selected
             return
         else: #if degree is 2+
-            randSelect('\n\n',2) #select random paragraph
+            randSelect('\n\n') #select random paragraph
             if(degree == 2):
                 return
             else: #if degree is 3+
-                randSelect('\n',1) #select random line
+                randSelect('\n') #select random line
                 if(degree == 3):
                     return
                 elif(degree == 4):
-                    randSelect(' ',1) #select random word
+                    randSelect(' ') #select random word
                     return
 
     #    Executed code
@@ -136,5 +137,5 @@ user = getUserToQuery()
 timeline = api.GetUserTimeline(screen_name=user,count=20,include_rts=False)
 print [t.GetText() for t in timeline]
 #print timeline[0].text
-status(timeline, 2)
+status(timeline, 3)
 print "EOT"
