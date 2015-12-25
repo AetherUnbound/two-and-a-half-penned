@@ -7,7 +7,7 @@
 import twitter
 import pyttsx
 engine = pyttsx.init()
-engine.setProperty('rate', 150)
+engine.setProperty('rate', 125)
 from random import randint
 import sys
 reload(sys)
