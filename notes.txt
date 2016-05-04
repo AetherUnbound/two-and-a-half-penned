@@ -1,0 +1,5 @@
+Doc on how to print to the screen in more significant ways
+https://docs.python.org/2/howto/curses.html
+
+Tkinter also looks like a really good idea
+http://www.python-course.eu/tkinter_text_widget.php
