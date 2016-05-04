@@ -142,5 +142,5 @@ user = getUserToQuery()
 timeline = api.GetUserTimeline(screen_name=user,count=20,include_rts=False)
 print [t.GetText() for t in timeline]
 #print timeline[0].text
-status(timeline, 2)
+status(timeline, 1)
 print "EOT"
