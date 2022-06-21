@@ -8,7 +8,7 @@ Charlie Sheen is well known on Twitter for writing odd, esoteric, haiku-like twe
  3. Tweet display that will present the tweet in a meaningful fashion
  4. Text-to-speech component that will read of the tweets/partial tweets as they are pulled
 
-The latter two will involve physical components, and as such will only be pursued after (1) and (2) are completed. [Matthew Bowden](https://github.com/AetherUnbound) will mainly be contributing to the coding portion of this project, while [Logan Pendergrass](https://github.com/ljpendergrass) will be directing the artistic portion.
+The latter two will involve physical components, and as such will only be pursued after (1) and (2) are completed. [Madison Swain-Bowden](https://github.com/AetherUnbound) will mainly be contributing to the coding portion of this project, while [Logan Pendergrass](https://github.com/ljpendergrass) will be directing the artistic portion.
 
 ### Code Overview
 Major code components/requirements will include the following:
